@@ -495,6 +495,11 @@ class AtomicTransactionComposer:
         sim_result = SimulationResponse.undictify(
             msgpack.unpackb(encoded_result)
         )
+
+        return sim_result
+
+    def readonly(self, client: algod.AlgodClient) -> List["ABIResult"]:
+        sim_result = self.simulate(client)
         if not sim_result.would_succeed:
             raise error.AtomicTransactionComposerError(
                 f"Simulation failed: {sim_result.__dict__}"
