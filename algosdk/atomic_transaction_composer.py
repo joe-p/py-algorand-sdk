@@ -481,7 +481,7 @@ class AtomicTransactionComposer:
         self.status = AtomicTransactionComposerStatus.SUBMITTED
         return self.tx_ids
 
-    def simulate(self, client: algod.AlgodClient) -> List["ABIResult"]:
+    def simulate(self, client: algod.AlgodClient) -> SimulationResponse:
 
         if self.status <= AtomicTransactionComposerStatus.SUBMITTED:
             self.gather_signatures()
