@@ -210,7 +210,7 @@ class Transaction:
             d["fee"] if "fee" in d else 0,
             d["fv"] if "fv" in d else 0,
             d["lv"],
-            base64.b64encode(d["gh"]).decode(),
+            base64.b64encode(d["gh"]).decode() if "gh" in d else None,
             d["gen"] if "gen" in d else None,
             flat_fee=True,
         )
@@ -1355,7 +1355,7 @@ class AssetTransferTxn(Transaction):
         self.amount = amt
         if (not isinstance(self.amount, int)) or self.amount < 0:
             raise error.WrongAmountType
-        self.index = self.creatable_index(index, required=True)
+        self.index = self.creatable_index(index, required=True) if index else 0
         self.close_assets_to = close_assets_to
         self.revocation_target = revocation_target
         if not sp.flat_fee:
