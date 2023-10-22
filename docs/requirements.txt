@@ -1,3 +1,2 @@
-sphinx==4.2.0
-sphinx-rtd-theme==1.0.0
-m2r2
+sphinx==7.2.6
+sphinx-markdown-builder==0.6.5
